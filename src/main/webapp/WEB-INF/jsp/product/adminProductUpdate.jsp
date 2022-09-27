@@ -89,7 +89,7 @@ fieldset {
 				
 				<div class="form-group">
 					<label for="exampleFormControlInput1">商品照片:</label> 
-					<input type="file" class="form-control" name="productImage" value="upload" >
+					<input type="file" class="form-control" name="productImage"  >
 					<img class="img" src="../<%=request.getParameter("productImage") %>" width="300px" >
 					
 			<script>
@@ -163,18 +163,16 @@ function update(i) {
 	Swal.fire({
 		  icon: 'success',
 		  title: '更新完成',
-		  showConfirmButton: true,
-		  timer: 3000
+		  showConfirmButton: false,
+		  timer: 1000
 		  
 		})
 		
 		.then((result) => {
-	  if (result.isConfirmed) {
-	    Swal.fire(
-	      
-	    )
+	 
+	    
 	    $("#updateProduct"+i).submit();
-	  }
+	  
 	})
 	
 }

@@ -16,6 +16,7 @@
 <%@include file="../includes/eLinkHead.jsp" %>
 <!-- eLindHead (結束) -->
 <style type="text/css">
+
 fieldset {
 	            width: 1200px;
                 border-radius: 15px;
@@ -23,24 +24,27 @@ fieldset {
                 background-color: white;
 }
 
-.tables{
-width: 100%;
-height: 100%;
-table-layout: fixed;
-}
+
 span {
 position:relative;
 overflow:hidden;
-white-space: nowrap; 
+white-space: nowrap;  
 overflow: hidden;  
-text-overflow: ellipsis;  
-max-width:200px;
+text-overflow: ellipsis; 
+max-width:300px;
+display:inline-block;
+
+}
+.d-flex  {
+  position:relative;
+overflow:hidden;
+white-space: nowrap;  
+overflow: hidden;  
+text-overflow: ellipsis; 
+max-width:270px;
 display:inline-block;
 }
 
-.avatar {
-  width:100px
-}
 </style>
 </head>
 
@@ -72,7 +76,7 @@ display:inline-block;
 	
 	<div class="nav-wrapper position-relative end-0">
    <ul class="nav nav-pills nav-fill p-1" role="tablist">
-    <li class="nav-item">
+   <li class="nav-item">
          <a class="nav-link mb-0 px-0 py-1 active"  href="${pageContext.request.contextPath}/product" role="tab" aria-controls="profile" aria-selected="true">
          搜全部
          </a>
@@ -117,12 +121,19 @@ display:inline-block;
 
 
 
-	<div class="input-group " >
-          <input type="search" class="light-table-filter" data-table="table align-items-center mb-0" class="form-control" placeholder="請輸入關鍵字" type="text" >
-          <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-        </div>
+<!-- 	<div class="input-group " > -->
+<!--           <input type="search" class="light-table-filter" data-table="table align-items-center mb-0" class="form-control" placeholder="請輸入關鍵字" type="text" > -->
+<!--           <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span> -->
+<!--         </div> -->
         
-        
+        <div class="form-group">
+					<div class="input-group ">
+						<span class="input-group-text"><i
+							class="ni ni-zoom-split-in"></i></span> <input type="search"
+							class="light-table-filter form-control" data-table="table align-items-center mb-0"
+							placeholder="請輸入關鍵字">
+					</div>
+				</div>
 	
 	
 	
@@ -130,7 +141,7 @@ display:inline-block;
     <table class="table align-items-center mb-0">
     
     	<colgroup>
-              <col width="10%">
+              <col width="15%">
               <col width="5%">
               <col width="5%">
               <col width="5%">
@@ -165,15 +176,15 @@ display:inline-block;
         <tr>
           <td>
             <div class="d-flex px-2 py-1">
-              <input type="hidden" name="productId" value=<%=pb.getProductId()%>>
+         <input type="hidden" name="productId" value=<%=pb.getProductId()%>>
               <div>
-              
-                <img src="../<%=pb.getProductImage() %>" width="80px">
+<!--        照片位置         -->
+              <img src="./<%=pb.getProductImage()%>"  width="80px" border-radius="15px" margin="20px auto">
               </div>
                &nbsp;&ensp;
               <div class="d-flex flex-column justify-content-center">
                 <h6 class="mb-0 text-s"><%=pb.getProductName()%></h6>
-                <p class="text-xs text-secondary mb-0">
+                <p class="text-xs text-secondary mb-0" >
                 <% 
 				if (pb.getProductCategoryId() == 1) {
 					out.println("五穀根莖類");
@@ -193,10 +204,10 @@ display:inline-block;
 					out.println("無法辨別");
 				}
 				%>
-                                
                 </p>
               </div>
             </div>
+            
           </td>
           <td>
           <span class="text-secondary text-xs font-weight-bold"><%=pb.getProductUnit()%></span>
@@ -228,7 +239,7 @@ display:inline-block;
 			%>
             </span>
           </td>
-           <td class="align-middle text-center" text-overflow=" ellipsis">
+           <td class="align-middle text-center" >
             <span class="text-secondary text-xs font-weight-bold" ><%=pb.getProductDescription()%></span>
           </td>
           
@@ -243,73 +254,102 @@ display:inline-block;
           -->
           
           <td>
-		 <form ALIGN=right action="updateProduct" method="post">
+		 <form  action="updateProduct" method="post">
             <input type="hidden" name="ProductId" value=<%=pb.getProductId()%> >
             <input type="hidden" name="ProductName" value=<%=pb.getProductName()%> >
             <input type="hidden" name="ProductCategoryId" value=<%=pb.getProductCategoryId()%>>
+            <input type="hidden" name="productImage" value=<%=pb.getProductImage()%>>
             <input type="hidden" name="ProductUnit" value=<%=pb.getProductUnit()%> >
             <input type="hidden" name="ProductPrice" value=<%=pb.getProductPrice()%> >
             <input type="hidden" name="ProductOrigin" value=<%=pb.getProductOrigin()%>>
             <input type="hidden" name="ProductStock" value=<%=pb.getProductStock()%>>
             <input type="hidden" name="ProductStatus" value=<%=pb.getProductStatus()%>>
             <input type="hidden" name="ProductDescription" value=<%=pb.getProductDescription()%> >
-<!--         <input ALIGN=center type="submit" value="修改" > -->
+<!--             <input ALIGN=center type="submit" value="修改" > -->
             <button class="btn bg-gradient-primary mb-0"    onclick="">
              <i class="ni ni-settings"></i>
-        	</button>
+     	</button>
         </form>
          </td>
          
          <td>
-        <form ALIGN=center action="deleteProductAction" method="post">
+        <form id="deleteProduct<%=pb.getProductId()%>" action="deleteProductAction" method="post">
             <input type="hidden" name="ProductId" value=<%=pb.getProductId()%> >
             <input type="hidden" name="ProductName" value=<%=pb.getProductName()%> >
             <input type="hidden" name="ProductCategoryId" value=<%=pb.getProductCategoryId()%>>
+            <input type="hidden" name="productImage" value=<%=pb.getProductImage()%>>
             <input type="hidden" name="ProductUnit" value=<%=pb.getProductUnit()%> >
             <input type="hidden" name="ProductPrice" value=<%=pb.getProductPrice()%> >
             <input type="hidden" name="ProductOrigin" value=<%=pb.getProductOrigin()%>>
             <input type="hidden" name="ProductStock" value=<%=pb.getProductStock()%>>
             <input type="hidden" name="ProductStatus" value=<%=pb.getProductStatus()%>>
             <input type="hidden" name="ProductDescription" value=<%=pb.getProductDescription()%> >
-<!--             <input ALIGN=center type="submit" value="刪除" name="delete" > -->
-<!--             <span class="badge bg-gradient-info" type="submit">刪除</span> -->
-            <button class="btn bg-gradient-primary mb-0" 
-            onclick="Swal.fire({
-            	  title: '確定要刪除?',
-            	  text: '將無法回復',
-            	  icon: 'warning',
-            	  showCancelButton: true,
-            	  confirmButtonColor: '#3085d6',
-            	  cancelButtonColor: '#d33',
-            	  confirmButtonText: 'Yes, delete it!'
-            	})
-            	.then((result) => {
-            	  if (result.isConfirmed) {
-            	    Swal.fire(
-            	      'Deleted!',
-            	      'Your file has been deleted.',
-            	      'success'
-            	    )
-            	  }
-            	})">
-            	<i class="ni ni-scissors"></i>
+            <button type="button" class="btn bg-gradient-primary mb-0"  onclick="del(<%=pb.getProductId()%>)">
+            	<i class="ni ni-scissors" ></i>
             	</button>
         </form>
-       
-            </td>
+        </td>
           
         </tr>
-</form>
+        
         <%
 			}
 			%>
 			
-			
-			
-			
-			
-			
-				<script>
+      </tbody>
+    </table>
+  </div>
+</div>
+</fieldset>
+
+<script type="text/javascript">
+
+function del(i) {
+	Swal.fire({
+	  title: '確定要刪除?',
+	  text: '將無法回復',
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'delete'
+	})
+	.then((result) => {
+		if(result.isConfirmed){
+	    Swal.fire(
+	      '已刪除!',
+	      '商品已從資料庫移除!',
+	      'success'
+	    )
+		.then((result) => {
+	  	  $("#deleteProduct"+i).submit();
+		})
+	}
+		})
+	}	
+
+</script>
+
+<!-- ////////////////// 個人主文結束 //////////////////-->
+		<!--////////////////// Footer(開始) //////////////////-->
+		<%@include file="../includes/eFooter.jsp"%>
+		<!-- ////////////////// Footer(結束) //////////////////-->
+
+		<!-- ////////////////// 中間主畫面(結束) ////////////////// -->
+	</main>
+	<!-- ////////////////// 主畫面框架(結束) //////////////////-->
+
+	<!-- ////////////////// (右上設定鈕)Sidenav Type 調整樣式 ////////////////// -->
+	<!-- ////////////////// Sidebar Backgrounds 開始 //////////////////-->
+	<%@include file="../includes/eSidenavTypeSetting.jsp"%>
+	<!-- ////////////////// Sidebar Backgrounds 結束 ////////////////// -->
+
+	<!-- ////////////////// 框架Script url (開始)(不能少) ////////////////// -->
+	<%@include file="../includes/eScriptForBody.jsp"%>
+	<!-- ////////////////// 框架Script (結束) //////////////////-->
+
+
+<script>
 	(function(document) {
 		  'use strict';
 
@@ -356,37 +396,7 @@ display:inline-block;
 		})(document);
 	
 	</script>
-			
-			
-			
-      </tbody>
-    </table>
-  </div>
-</div>
-</fieldset>
-
-
-
-
-<!-- ////////////////// 個人主文結束 //////////////////-->
-		<!--////////////////// Footer(開始) //////////////////-->
-		<%@include file="../includes/eFooter.jsp"%>
-		<!-- ////////////////// Footer(結束) //////////////////-->
-
-		</div>
-		<!-- ////////////////// 中間主畫面(結束) ////////////////// -->
-	</main>
-	<!-- ////////////////// 主畫面框架(結束) //////////////////-->
-
-	<!-- ////////////////// (右上設定鈕)Sidenav Type 調整樣式 ////////////////// -->
-	<!-- ////////////////// Sidebar Backgrounds 開始 //////////////////-->
-	<%@include file="../includes/eSidenavTypeSetting.jsp"%>
-	<!-- ////////////////// Sidebar Backgrounds 結束 ////////////////// -->
-
-	<!-- ////////////////// 框架Script url (開始)(不能少) ////////////////// -->
-	<%@include file="../includes/eScriptForBody.jsp"%>
-	<!-- ////////////////// 框架Script (結束) //////////////////-->
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

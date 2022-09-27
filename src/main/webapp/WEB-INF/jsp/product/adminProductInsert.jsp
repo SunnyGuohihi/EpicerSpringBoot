@@ -117,7 +117,7 @@ fieldset {
        
 <!--             <input type="hidden" name="action" value="insert" > -->
 <!--             <input type="submit" value="新增" name="insert" > -->
-            <button  class="btn bg-gradient-primary mb-0" onclick="insert()">新增</button>
+            <button type="button" class="btn bg-gradient-primary mb-0" onclick="insert()">新增</button>
             <button type="button" class="btn bg-gradient-primary mb-0" id="action">一鍵輸入</button>
 
        
@@ -146,27 +146,25 @@ $(function(){
 //       document.getElementById("ProductDescription").value="北海道干貝顆顆飽滿，新鮮採集急凍來台！北海道干貝料理多元，生食刺身或以蒜蓉清蒸、熱炒熬湯、炙燒炭烤、奶油香煎，口感細緻濃郁、絲絲甘甜，滿足味蕾的極品！";
 //       $('#ProductDescription').attr("innerText","北海道干貝顆顆飽滿，新鮮採集急凍來台！北海道干貝料理多元，生食刺身或以蒜蓉清蒸、熱炒熬湯、炙燒炭烤、奶油香煎，口感細緻濃郁、絲絲甘甜，滿足味蕾的極品！"); 
      });
+});
 
 function insert() {
 	Swal.fire({
 		  icon: 'success',
 		  title: '新增完成',
-		  showConfirmButton: true,
-		  timer: 3000
+		  showConfirmButton: false,
+		  timer: 1000
 		  
 		})
 		
 		.then((result) => {
-	  if (result.isConfirmed) {
-	    Swal.fire(
-	      
-	    )
+	  
 	    $("#updateProduct").submit();
-	  }
+	  
 	})
 	
 }
-     });
+    
 
 </script>
 

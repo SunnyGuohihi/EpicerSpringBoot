@@ -121,12 +121,19 @@ display:inline-block;
 
 
 
-	<div class="input-group " >
-          <input type="search" class="light-table-filter" data-table="table align-items-center mb-0" class="form-control" placeholder="請輸入關鍵字" type="text" >
-          <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-        </div>
+<!-- 	<div class="input-group " > -->
+<!--           <input type="search" class="light-table-filter" data-table="table align-items-center mb-0" class="form-control" placeholder="請輸入關鍵字" type="text" > -->
+<!--           <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span> -->
+<!--         </div> -->
         
-        
+        <div class="form-group">
+					<div class="input-group ">
+						<span class="input-group-text"><i
+							class="ni ni-zoom-split-in"></i></span> <input type="search"
+							class="light-table-filter form-control" data-table="table align-items-center mb-0"
+							placeholder="請輸入關鍵字">
+					</div>
+				</div>
 	
 	
 	
@@ -308,17 +315,18 @@ function del(i) {
 	  confirmButtonText: 'delete'
 	})
 	.then((result) => {
-	  if (result.isConfirmed) {
+		if(result.isConfirmed){
 	    Swal.fire(
-	      'Deleted!',
-	      'Your file has been deleted.',
+	      '已刪除!',
+	      '商品已從資料庫移除!',
 	      'success'
 	    )
+		.then((result) => {
 	  	  $("#deleteProduct"+i).submit();
-	  }
-	})
-	
-}
+		})
+	}
+		})
+	}	
 
 </script>
 

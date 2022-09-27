@@ -80,7 +80,7 @@ public class ProductController {
 		bean.setProductImage(fileLocalPath)	;
 		
 		productService.insert(bean);
-		return "redirect:product";
+		return "redirect:product";//要回controller可以用redirect
 	}
 	
 	@PostMapping("/updateProduct")
@@ -105,8 +105,8 @@ public class ProductController {
 			@RequestParam("productStatus") Integer productStatus,@RequestParam("productDescription") String productDescription
 			) throws IllegalStateException, IOException {
 		
-//		if (mf!=null) {
-		
+		if (mf!=null) {
+		System.out.println(mf);
 		
 //			存入該專案的位置寫法
 			String classLocalPath =this.getClass().getClassLoader().getResource("").getPath();
@@ -115,20 +115,22 @@ public class ProductController {
 //			用產品名稱來設定檔案名
 			String fileName="product"+productName;
 			String fileLocalPath = "images/"+fileName;
-			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription, fileLocalPath);
 //		    存檔
 			File saveFilePath =new File(saveFileDir,fileName);
 			mf.transferTo(saveFilePath);
 //			存入資料庫的寫法
 //			byte[] b=mf.getBytes();
 //			bean.setProductImage(b);
+			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription, fileLocalPath);
+			System.out.println(bean);
 			productService.update(bean);
 			
 			
-//		} else {
-//			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription);
-//			productService.update(bean);
-//		}
+		} else {
+			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription);
+			System.out.println(bean);
+			productService.update(bean);
+		}
 
 	
 	return "redirect:product";
