@@ -4,17 +4,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.epicer.model.product.Product;
+import com.epicer.model.product.ProductLike;
+import com.epicer.service.product.ProductLikeService;
 import com.epicer.service.product.ProductService;
 
 @Controller
@@ -22,6 +26,15 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductLikeService productLikeService;
+	
+	@Autowired
+	private HttpSession session;
+	
+	@Autowired
+	private SessionFactory factory;
 	
 //	後台首頁為http://localhost:8081/product
 	@GetMapping("/product")
@@ -42,11 +55,18 @@ public class ProductController {
 //		return "product/adminProductCategory";
 //	}
 	
+//	分兩頁的寫法
+//	@GetMapping(path="/productCategory")
+//	public String findCategoryAll(@RequestParam("productCategoryId") Integer productCategoryId ,Model m) {
+//		List<Product> beans=productService.findCategoryAll(productCategoryId);
+//		m.addAttribute("findCategoryAll",beans);
+//		return "product/adminProductCategory";
+//	}
 	@GetMapping(path="/productCategory")
 	public String findCategoryAll(@RequestParam("productCategoryId") Integer productCategoryId ,Model m) {
 		List<Product> beans=productService.findCategoryAll(productCategoryId);
-		m.addAttribute("findCategoryAll",beans);
-		return "product/adminProductCategory";
+		m.addAttribute("findAll",beans);
+		return "product/adminProduct";
 	}
 	
 	
@@ -68,10 +88,10 @@ public class ProductController {
 		String classLocalPathModify= classLocalPath.substring(1).replaceAll("target", "src").replaceAll("classes", "main");
 		String saveFileDir= classLocalPathModify+"webapp/WEB-INF/resources/images"; 
 //		用產品名稱來設定檔案名
-		String fileName="product"+productName;
-		String fileLocalPath = "images/"+fileName;
+//		String fileName="product"+productName;
+		String fileLocalPath = "images/"+mf.getOriginalFilename();
 //	    存檔
-		File saveFilePath =new File(saveFileDir,fileName);
+		File saveFilePath =new File(saveFileDir,mf.getOriginalFilename());
 		mf.transferTo(saveFilePath);
 //		存入資料庫的寫法
 //		byte[] b=mf.getBytes();
@@ -102,21 +122,30 @@ public class ProductController {
 			@RequestParam("productCategoryId") Integer productCategoryId, @RequestParam("productImage") MultipartFile mf,
 			@RequestParam("productUnit") String productUnit, @RequestParam("productPrice") Integer productPrice,
 			@RequestParam("productOrigin") String productOrigin,@RequestParam("productStock") Integer productStock,
-			@RequestParam("productStatus") Integer productStatus,@RequestParam("productDescription") String productDescription
+			@RequestParam("productStatus") Integer productStatus,@RequestParam("productDescription") String productDescription,String oldimg 
 			) throws IllegalStateException, IOException {
 		
-		if (mf!=null) {
-		System.out.println(mf);
+		if (mf.isEmpty()) {
 		
+			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription,oldimg);
+			System.out.println(bean);
+			productService.update(bean);
+			
+			
+		} else {
+			
 //			存入該專案的位置寫法
 			String classLocalPath =this.getClass().getClassLoader().getResource("").getPath();
 			String classLocalPathModify= classLocalPath.substring(1).replaceAll("target", "src").replaceAll("classes", "main");
 			String saveFileDir= classLocalPathModify+"webapp/WEB-INF/resources/images"; 
+			System.out.println(classLocalPath);
+//			/D:/Epicer/EpicerSpringBoot/target/classes/
 //			用產品名稱來設定檔案名
-			String fileName="product"+productName;
-			String fileLocalPath = "images/"+fileName;
-//		    存檔
-			File saveFilePath =new File(saveFileDir,fileName);
+//			String fileName="product"+productName+".jpg";
+			String fileLocalPath = "images/"+mf.getOriginalFilename();
+			//		    存檔
+			File saveFilePath =new File(saveFileDir,mf.getOriginalFilename());
+			System.out.println(mf.getOriginalFilename());
 			mf.transferTo(saveFilePath);
 //			存入資料庫的寫法
 //			byte[] b=mf.getBytes();
@@ -125,14 +154,8 @@ public class ProductController {
 			System.out.println(bean);
 			productService.update(bean);
 			
-			
-		} else {
-			Product bean = new Product(productId, productName, productCategoryId, productUnit, productPrice, productOrigin, productStock, productStatus, productDescription);
-			System.out.println(bean);
-			productService.update(bean);
 		}
 
-	
 	return "redirect:product";
 }
 	
@@ -143,6 +166,28 @@ public class ProductController {
 		return "redirect:product";
 	}
 	
+	
+	@PostMapping("/likeProduct")
+	public String likeProductAction(@RequestParam("ProductId") Integer productId) {
+		System.out.println(productId);
+		int userId = (int) session.getAttribute("userId");
+//		開連線拿Product
+		Session s = factory.openSession();
+		Product product =s.get(Product.class, productId);
+		s.close();
+		
+		ProductLike like=new ProductLike(userId, product);
+		ProductLike oldProductLike = productLikeService.findProductLike(productId, userId);
+		System.out.println(oldProductLike);
+		
+		if (oldProductLike != null) {
+			productLikeService.delete(productId,userId);
+		}else {
+			productLikeService.insert(like);
+		}
+		
+		return "redirect:product";
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
 package com.epicer.model.product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -65,6 +66,11 @@ public class Product implements Serializable{
 	
 //	@OneToMany(mappedBy = "cartProduct", cascade = CascadeType.ALL)
 //	private List<Cart> cartsList;
+	
+	
+//	消費者的商品收藏
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.ALL)
+	private List<ProductLike> ProductLikeId =new ArrayList<ProductLike>();
 
 	public Product() {
 	}
@@ -72,6 +78,46 @@ public class Product implements Serializable{
 	
 	
 	
+
+	public List<ProductLike> getProductLikeId() {
+		return ProductLikeId;
+	}
+
+
+
+
+
+	public void setProductLikeId(List<ProductLike> productLikeId) {
+		ProductLikeId = productLikeId;
+	}
+
+
+
+
+
+	public Product(Integer productId, String productName, Integer productCategoryId, String productUnit,
+			Integer productPrice, String productOrigin, Integer productStock, Integer productStatus,
+			String productDescription, Integer productLikeStatus, String productImage, Set<CartOfProduct> cartOfProduct,
+			List<ProductLike> productLikeId) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productCategoryId = productCategoryId;
+		this.productUnit = productUnit;
+		this.productPrice = productPrice;
+		this.productOrigin = productOrigin;
+		this.productStock = productStock;
+		this.productStatus = productStatus;
+		this.productDescription = productDescription;
+		this.productLikeStatus = productLikeStatus;
+		this.productImage = productImage;
+		this.cartOfProduct = cartOfProduct;
+		ProductLikeId = productLikeId;
+	}
+
+
+
+
 
 	public Product(Integer productId, String productName, Integer productCategoryId, String productUnit,
 			Integer productPrice, String productOrigin, Integer productStock, Integer productStatus,

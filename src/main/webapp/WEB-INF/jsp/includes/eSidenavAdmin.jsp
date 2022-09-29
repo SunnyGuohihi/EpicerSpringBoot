@@ -11,13 +11,14 @@
 			aria-hidden="true" id="iconSidenav"></i> <a class="navbar-brand m-0"
 			href=" (裝首頁jsp)https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
 			target="_blank"> <img src="./assets/img/logo-bgwhite.jpg"
-			class="navbar-brand-img h-100" alt="main_logo"> <span
+			class="navbar-brand-img h-100" alt="main_logo"> 
+			<span
 			class="ms-1 font-weight-bold">管理員介面</span>
 		</a>
 	</div>
 	<hr class="horizontal dark mt-0">
-	<div class="collapse navbar-collapse  w-auto "
-		id="sidenav-collapse-main">
+<!-- 	<div class="collapse navbar-collapse  w-auto " -->
+<!-- 		id="sidenav-collapse-main"> -->
 		<ul class="navbar-nav">
 			
 			<!-- 一個分類可彈出&連動多個連結-->
