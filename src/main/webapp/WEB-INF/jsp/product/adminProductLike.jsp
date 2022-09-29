@@ -69,12 +69,53 @@ display:inline-block;
 	<div class="card">
 	<br>
 	
-	<h5 ALIGN=CENTER>商品收藏</h5>
+	<h5 ALIGN=CENTER>商品列表</h5>
 	<br>
 	
-        
-	
-
+     <div class="nav-wrapper position-relative end-0">
+   <ul class="nav nav-pills nav-fill p-1" role="tablist">
+   <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="${pageContext.request.contextPath}/product" role="tab" aria-controls="profile" aria-selected="true">
+         搜全部
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="${pageContext.request.contextPath}/productCategory?productCategoryId=1" role="tab" aria-controls="profile" aria-selected="true">
+         五穀根莖類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="${pageContext.request.contextPath}/productCategory?productCategoryId=2"  role="tab" aria-controls="dashboard" aria-selected="false">
+         奶類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="productCategory?productCategoryId=3" role="tab" aria-controls="dashboard" aria-selected="false">
+         蛋豆魚肉類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="productCategory?productCategoryId=4" role="tab" aria-controls="dashboard" aria-selected="false">
+         蔬菜類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="productCategory?productCategoryId=5" role="tab" aria-controls="dashboard" aria-selected="false">
+         水果類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="productCategory?productCategoryId=6" role="tab" aria-controls="dashboard" aria-selected="false">
+         油脂與堅果種子類
+         </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link mb-0 px-0 py-1 active"  href="productCategory?productCategoryId=7" role="tab" aria-controls="dashboard" aria-selected="false">
+         調味品類
+         </a>
+      </li>
+    </ul>
+</div>   
 
 
 <!-- 	<div class="input-group " > -->
