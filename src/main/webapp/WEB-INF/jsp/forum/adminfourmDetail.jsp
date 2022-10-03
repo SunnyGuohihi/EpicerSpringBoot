@@ -60,7 +60,7 @@ function queryReply(){
 					            "<div class='d-flex px-2 py-1'>"+
 					            "<form action='replyUpdatePage' method='post'>"+
 								"<input type='hidden' name='replyId' value='"+data[i].articleReplyId+"'>"+
-								"<button type='submit' class='btn bg-gradient-primary'>Update</button>"+
+								"<button type='submit' class='btn btn-outline-warning'>更新</button>"+
 								"</form>"+
 					               
 					            

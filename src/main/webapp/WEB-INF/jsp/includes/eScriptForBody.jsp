@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <!--   jQuery   -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!--   SweetAlert(https://sweetalert2.github.io/#examples)   -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!--   Core JS Files   -->
 	<script src="./assets/js/core/popper.min.js"></script>

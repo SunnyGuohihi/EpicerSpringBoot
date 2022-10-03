@@ -26,7 +26,7 @@
 	<!-- ////////////////// 介面最外層框架 //////////////////-->
 	<div class="min-height-300 bg-primary position-absolute w-100"></div>
 	<!-- ////////////////// Side Navber (開始) //////////////////-->
-	<%@include file="../includes/eSidenav.jsp"%>
+	<%@include file="../includes/eSidenavAdmin.jsp"%>
 	<!-- ////////////////// Side Navber (結束) //////////////////-->
 	<!-- //////////////////主畫面框架(開始) ////////////////// -->
 	<main class="main-content position-relative border-radius-lg ">
@@ -54,7 +54,7 @@
 		<div class="row">
 			<div class="col-md-2">
 				<div class="container text-left">
-					<form action="beforeCourseInsert" method="post">
+					<form action="beforeCourseInsert" method="get">
 						<button type="submit" class="btn btn-info">新增課程</button>
 					</form>
 				</div>

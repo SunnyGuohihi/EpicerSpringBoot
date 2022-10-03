@@ -47,7 +47,7 @@
                     </div>
                   </div>
           
-        <img class="u-image u-image-default u-image-1" src="${recipe.imgPath}" alt="" data-image-width="1071" data-image-height="1500">
+        <img class="u-image u-image-default u-image-1" src="${pageContext.request.contextPath}/${recipe.imgPath}" alt="" width="300" height="300">
         <div class="u-clearfix u-layout-wrap u-layout-wrap-2">
           <div class="u-layout">
             <div class="u-layout-col">
@@ -56,8 +56,7 @@
                   <div class="u-container-style u-layout-cell u-size-60 u-layout-cell-4">
                     <div class="u-container-layout u-valign-top u-container-layout-4">
                       <div class="u-clearfix u-custom-html u-custom-html-1">
-                        <form accept-charset="UTF-8" id="global-search" action="ControllerServlet" method="post">
-                          <input type="hidden" name="todo" value="queryforlist">
+                        <form accept-charset="UTF-8" id="global-search" action="recipelist" method="post">
                           <div class="to-search">
                             <div class="search-by-keyword">
                               <div class="focus-input search-container search-recipe select-input"> 搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入食譜名" name="searchByRecipe">
@@ -65,7 +64,7 @@
                               </div>
                             </div>
                             <h3>
-                              <a class="header-action-link" href="addpage.controller" rel="nofollow"><i class="icon-plus-regular"></i>&nbsp;寫食譜 
+                              <a class="header-action-link" href="http://localhost:8091/to/add" rel="nofollow"><i class="icon-plus-regular"></i>&nbsp;寫食譜 
                               </a>
                             </h3>
                           </div>

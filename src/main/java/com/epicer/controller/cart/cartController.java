@@ -19,8 +19,7 @@ public class cartController {
 	public String processUserCartAction() {
 		return "cart/usercart";
 	}
-	
-	
+
 	// 管理員查全部訂單
 	// 連線網址路徑: http://localhost:8081/adminorder.controller
 	@GetMapping("/adminorder.controller")
@@ -34,6 +33,12 @@ public class cartController {
 	public String processUserOrderAction() {
 		return "cart/userorder";
 	}
-	
+
+	// EPICER測試前台登入頁面
+	// 連線網址路徑: http://localhost:8091/firstfrontindex
+	@GetMapping("/firstfrontindex")
+	public String processFristFrontIndexAction() {
+		return "frontframeblankpgs/shop";
+	}
 
 }

@@ -43,6 +43,24 @@
 		<button class="btn bg-gradient-primary mb-0"
 			onclick="Swal.fire('Any fool can use a computer')">Try me!</button>
 			
+		<button class="btn bg-gradient-primary mb-0"
+			onclick="
+			Swal.fire({
+				  title: 'Custom width, padding, color, background.',
+				  width: 600,
+				  padding: '3em',
+				  color: '#716add',
+				  background: '#fff url(/images/trees.png)',
+				  backdrop: `
+				  	rgba(0,0,123,0.4)
+				    url('images/a2c7860c8aafc86438b3e9568b47b252.gif')
+				    left top
+				    no-repeat
+				  `
+				  })"
+				  
+				  >Try me!</button>
+			
 			
 	<table id="myTable">
 	

@@ -22,6 +22,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <meta name="keywords" content="">
 <meta name="description" content="">
 <title>Eciper Groceries Shopping Cart</title>
+<!-- SweetAlert2 -->
+<script src="js/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="./css/nicepage.css" media="screen">
 <link rel="stylesheet" href="./css/nicepagecart.css" media="screen">
 <style>
@@ -45,6 +47,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						List<CartOfProduct> listCart = (List<CartOfProduct>) request.getAttribute("queryById");
 						session.getAttribute("userId");
 						%> 
+						
 						<colgroup>
 							<col width="40%">
 							<col width="15%">
@@ -53,11 +56,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 							<col width="15%">
 						</colgroup>
 						<thead class="u-align-left u-table-alt-grey-5 u-table-body">
+							<tr><h3>購物明細</h3></tr>
 							<tr>
-								<th
-									class="u-border-1 u-border-grey-15 u-first-column
-								u-table-cell">商品名稱
-								</th>
+								<th class="u-border-1 u-border-grey-15 u-first-column u-table-cell">商品名稱	</th>
 								<th class="u-border-1 u-border-grey-15 u-table-cell">單價</th>
 								<th class="u-border-1 u-border-grey-15 u-table-cell">數量</th>
 								<th class="u-border-1 u-border-grey-15 u-table-cell">小計</th>
@@ -143,11 +144,11 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 							%>
 						</tbody>
 					</table>
-					<!-- **********返回商品頁 & 清空購物車********** -->
+					<!-- **********返回商品頁 & 清空購物車 (還沒設定/先註解)********** -->
 
 					<div class="u-cart-button-container">
 						<a
-							href="http://localhost:8080/SpringShoppingCart/productlist.controller"
+							href="http://localhost:8091/queryallproductmenu"
 							data-page-id="711118021"
 							class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-btn-1"><span
 							class="u-icon"><svg class="u-svg-content"
@@ -167,7 +168,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					<div class="u-cart-blocks-container">
 						<div class="u-cart-block u-indent-30">
 							<div class="u-cart-block-container u-clearfix">
-								<h5 class="u-cart-block-header u-text">Promotion Code</h5>
+								<h5 class="u-cart-block-header u-text">輸入優惠碼</h5>
 								<div class="u-cart-block-content u-text">
 									<div class="u-cart-form u-form">
 										<form action="#" method="POST"
@@ -197,7 +198,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 							</div>
 						</div>
 
-						<!-- **********總和table (待做) **********-->
+						<!-- **********總和table **********-->
 
 						<div class="u-cart-block u-cart-totals-block u-indent-30">
 							<div class="u-cart-block-container u-clearfix">
@@ -229,7 +230,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 											</tbody>
 										</table>
 									</div>
-									<a href="/ShoppingCart/newShoppingCarServlet?action=checkout"
+									<a href="http://localhost:8091/ordercheck"
 										data-page-id="93644921"
 										class="u-btn u-btn-round u-button-style u-cart-checkout-btn u-radius-50 u-btn-4 checkout">結帳</a>
 								</div>
@@ -239,6 +240,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					</div>
 				</div>
 	</section>
+	
+	<!--   SweetAlert(https://sweetalert2.github.io/#examples)   -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script>
 		(function(document) {
@@ -301,7 +305,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					function() {
 						return confirm("確定要刪除嗎?( ´•̥̥̥ω•̥̥̥` )")
 // 										【"	+$(this).parent().parent().parent().parent().find("td:first").text()+ "】
-					});
+					}
+					);
+			
 			//清空購物車
 			$("#clearCart").click(function(){
 				return confirm("確定要清空購物車嗎? இдஇ");
@@ -330,6 +336,24 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		//按鈕功能
 		//刪除
 		function deleteCartId(cartId){
+// 			Swal.fire({
+// 				  title: '確定要刪除嗎?( ´•̥̥̥ω•̥̥̥` )',
+// 				  text: "還來得及反悔喔!",
+// 				  icon: 'warning',
+// 				  showCancelButton: true,
+// 				  confirmButtonColor: '#3085d6',
+// 				  cancelButtonColor: '#d33',
+// 				  confirmButtonText: '刪除!'
+// 				}).then((result) => {
+// 				  if (result.isConfirmed) {
+// 				    Swal.fire(
+// 				      '刪除成功!',
+// 				      '可以回商品頁重新加單喔!',
+// 				      'success'
+// 				    )
+// 				    $(window.location.href = "deleteCartItem?cartId=" + cartId).submit();
+// 				  }
+// 				})
 			window.location.href = "deleteCartItem?cartId=" + cartId;
 		}
 	</script>

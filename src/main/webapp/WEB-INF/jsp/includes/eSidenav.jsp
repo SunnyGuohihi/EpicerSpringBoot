@@ -172,7 +172,7 @@
 					</div> <span class="nav-link-text ms-1">購物車明細</span>
 			</a>
 			<a class="nav-link active"
-				href="./pages/dashboard.html" >
+				href="http://localhost:8091/adminorderquery" >
 					<div
 						class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 					</div> <span class="nav-link-text ms-1">所有訂單</span>

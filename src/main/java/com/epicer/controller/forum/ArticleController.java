@@ -439,7 +439,7 @@ public class ArticleController {
 			throws IOException {
 		System.out.println("file.getOriginalFilename() " + file.getOriginalFilename());
 		// 使用uuid解决文件重名
-		String outpath = "C:\\Users\\smile\\Desktop\\forum\\Epicer\\src\\main\\webapp\\WEB-INF\\resources\\images\\"
+		String outpath = "C:\\Users\\User\\Desktop\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images\\"
 				+ UUID.randomUUID().toString().replaceAll("-", "");
 		byte[] bytes = file.getBytes();
 		// 读取文件路径

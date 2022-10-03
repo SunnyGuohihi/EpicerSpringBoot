@@ -22,7 +22,7 @@ org.hibernate.SessionFactory,com.epicer.util.*"%>
 	<!-- ////////////////// 介面最外層框架 //////////////////-->
 	<div class="min-height-300 bg-primary position-absolute w-100"></div>
 	<!-- ////////////////// Side Navber (開始) //////////////////-->
-	<%@include file="../includes/eSidenav.jsp"%>
+	<%@include file="../includes/eSidenavAdmin.jsp"%>
 	<!-- ////////////////// Side Navber (結束) //////////////////-->
 	<!-- //////////////////主畫面框架(開始) ////////////////// -->
 	<main class="main-content position-relative border-radius-lg ">

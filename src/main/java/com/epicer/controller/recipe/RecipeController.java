@@ -27,10 +27,7 @@ import com.epicer.service.recipe.RecipeService;
 public class RecipeController {
 	@Autowired
 	private RecipeService recipeService;
-	@GetMapping(path = "/goto")
-	public String navbar() {
-		return "includes/eSidenavAdmin";
-	}
+	
 	@GetMapping(path = "/recipe/{userId}")
 	public String queryByUserId(@PathVariable("userId") Integer userId ,Model model) {
 		List<Recipe> queryByUserId = recipeService.queryByUserId(userId);
@@ -46,7 +43,7 @@ public class RecipeController {
 	}
 	
 	@PostMapping(path = "/recipelist" )
-	public String queryList(@RequestParam(value="searchByRecipe",defaultValue = " ")String name ,Model model) {
+	public String queryList(@RequestParam(value="searchByRecipe")String name ,Model model) {
 		List<Recipe> queryList = recipeService.queryByName(name);
 		model.addAttribute("searchResult",queryList);
 		return "recipe/NewResult";

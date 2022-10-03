@@ -34,6 +34,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/reciperesult/assets/**").addResourceLocations("/WEB-INF/resources/assets/");
 		registry.addResourceHandler("/recipeForUpdate/assets/**").addResourceLocations("/WEB-INF/resources/assets/");
 		registry.addResourceHandler("/to/assets/**").addResourceLocations("/WEB-INF/resources/assets/");
+		//註冊for前台頁面
+		registry.addResourceHandler("/source/**").addResourceLocations("/WEB-INF/resources/source/");
 	}
 
 	

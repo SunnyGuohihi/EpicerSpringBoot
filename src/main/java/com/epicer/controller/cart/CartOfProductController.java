@@ -32,14 +32,14 @@ public class CartOfProductController {
 	private static Integer userid=1002;
 	
 	// 管理員全部購物車  //暫時用不到
-	// 開啟前端購物車連線網址: http://localhost:8081/frontproductcart
+	// 開啟前端購物車連線網址: http://localhost:8091/frontproductcart
 	@GetMapping("/frontproductcart")
 	public String processAdminCartAction() {
 		return "cart/admincart";
 	}
 	
-	//前端畫面查全部食材商品 
-	//進入商品頁網址: http://localhost:8081/queryusercart
+	//前端購物車畫面查全部食材商品 
+	//進入商品頁網址: http://localhost:8091/queryusercart
 	@GetMapping(path = "/queryusercart")
 	public String processActionCartQueryAll(Model m){
 		System.out.println("gotoqueryallcart");
@@ -52,11 +52,9 @@ public class CartOfProductController {
 		m.addAttribute("tPrice",tPrice);
 		return "cart/frontproductintocart";
 	}
-
-
 	
 	//從商品頁按鈕進入購物車
-	//進入商品頁網址: http://localhost:8081/addproducttocart
+	//進入商品頁網址: http://localhost:8091/addproducttocart
 	@PostMapping(path = "/addproducttocart")
 //	@RequestParam("userid") Integer userId, 
 	public String processItemCheckAction(@RequestParam("productid") Integer productId,
@@ -74,6 +72,7 @@ public class CartOfProductController {
 			
 			Integer cartProductId =  COPService.checkItemList(userid, productId);
 			Optional<CartOfProduct> amount = COPService.findById(cartProductId);
+			//System.out.println("amount:" + amount + "cartProductId:"+ cartProductId);
 			Integer itemquantity = amount.get().getQuantity();
 			c1.setQuantity(itemquantity+1);
 			c1.setCartProductId(cartProductId);
@@ -82,29 +81,27 @@ public class CartOfProductController {
 			System.out.println("do insert cart!");
 			COPService.insert(c1);
 		}
-		return "cart/frontproductmenu";
-		 //停留在商品頁 //去新的controller才要用redirect:/
+		return "redirect:/queryallproductmenu";  //停留在商品頁 //去新的controller才要用redirect:/
 	}
 	
 	//商品總數量&金額 計算
 	//進入購物車網址: http://localhost:8080/SpringShoppingCart/gotocart.controller
-	@GetMapping(path = "/gotocart.controller")
-	private String gotoCart(Model m) {
-
-//		Integer userid = (Integer)m.getAttribute("userid");
-		Optional<CartOfProduct> beans= COPService.findById(userid);
-		
-		System.out.println("gotocart userid:"+ userid);
-		
-		Integer tQuantity = COPService.totalCartQuantity(userid);
-		Integer tPrice = COPService.totalCartPrice(userid);
-		System.out.println("totalCartQuantity:" +tQuantity +"totalCartPrice:" + tPrice);
-		m.addAttribute("queryById",beans);
-		m.addAttribute("tQuantity",tQuantity);
-		m.addAttribute("tPrice",tPrice);
-		return "ShoppingCartPage";
-	}
-	
+//	@GetMapping(path = "/gotocart.controller")
+//	private String gotoCart(Model m) {
+//
+////		Integer userid = (Integer)m.getAttribute("userid");
+//		Optional<CartOfProduct> beans= COPService.findById(userid);
+//		
+//		System.out.println("gotocart userid:"+ userid);
+//		
+//		Integer tQuantity = COPService.totalCartQuantity(userid);
+//		Integer tPrice = COPService.totalCartPrice(userid);
+//		System.out.println("totalCartQuantity:" +tQuantity +"totalCartPrice:" + tPrice);
+//		m.addAttribute("queryById",beans);
+//		m.addAttribute("tQuantity",tQuantity);
+//		m.addAttribute("tPrice",tPrice);
+//		return "ShoppingCartPage";
+//	}
 	
 	//刪除購物車的商品
 	@GetMapping("/deleteCartItem")
@@ -114,5 +111,4 @@ public class CartOfProductController {
 		
 		return "redirect:/queryusercart";
 	}
-	
 }

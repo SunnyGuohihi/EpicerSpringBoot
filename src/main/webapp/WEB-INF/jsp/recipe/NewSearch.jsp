@@ -13,6 +13,19 @@
 <!-- eLindHead (開始) -->
 <%@include file="../includes/eLinkHead.jsp" %>
 <!-- eLindHead (結束) -->
+<style type="text/css">
+span {
+position:relative;
+overflow:hidden;
+white-space: nowrap;  
+overflow: hidden;  
+text-overflow: ellipsis; 
+max-width:600px;
+display:inline-block;
+
+}
+
+</style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -28,15 +41,30 @@
 		<%@include file="../includes/eHead.jsp"%>
 		<!-- ////////////////// End 上方 Navbar //////////////////-->
 <!-- ////////////////// 個人主文開始 //////////////////-->
-<div class="focus-input search-container search-recipe select-input"> 搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入食譜名" name="searchByRecipe">
-                  <input type="submit">
-                </div>
-             <h3>
-                <a class="header-action-link" href="/to/add" rel="nofollow"><i class="icon-plus-regular"></i>&nbsp;寫食譜 </a>
-              </h3>
+<form accept-charset="UTF-8" id="global-search" action="recipelist" method="post">
+                          <div class="to-search">
+                            <div class="search-by-keyword">
+                              <div class="focus-input search-container search-recipe select-input"> 搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入食譜名" name="searchByRecipe">
+                                <input type="submit">
+                              </div>
+                            </div>
+                            <h3>
+                              <a class="header-action-link" href="http://localhost:8091/to/add" rel="nofollow"><i class="icon-plus-regular"></i>&nbsp;寫食譜 
+                              </a>
+                            </h3>
+                          </div>
+                        </form>
 <div class="card">
   <div class="table-responsive">
-    <table class="table align-items-center mb-0">
+    <table class="table align-items-center mb-0" width = "100%">
+    <colgroup>
+			<col width="16%">
+			<col width="52%">
+			<col width="8%">
+			<col width="8%">
+			<col width="8%">
+			<col width="8%">
+		</colgroup>
       <thead>
         <tr>
           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">食譜名稱</th>
@@ -55,7 +83,7 @@
           <td>
             <div class="d-flex px-2 py-1">
               <div>
-                <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                <img src="${pageContext.request.contextPath}/${item.imgPath}" class="avatar avatar-sm me-3">
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <h6 class="mb-0 text-xs"><a href="${pageContext.request.contextPath}/reciperesult/${item.recipeId}">${item.recipeName}</h6>
@@ -64,11 +92,12 @@
             </div>
           </td>
           <td>
-            <p class="text-xs font-weight-bold mb-0">${item.recipeDescription}</p>
+<%--             <p class="text-xs font-weight-bold mb-0">${item.recipeDescription}</p> --%>
+            <span class="mb-0 text-xs" >${item.recipeDescription}</span>
 <!--             <p class="text-xs text-secondary mb-0">Organization</p> -->
           </td>
           <td class="align-middle text-center text-sm">
-            <span class="badge badge-sm badge-success">${item.cookTime}</span>
+            <span class="mb-0 text-xs">${item.cookTime}</span>
           </td>
           <td class="align-middle text-center">
             <span class="text-secondary text-xs font-weight-bold">${item.howManyPeople}</span>
@@ -83,6 +112,7 @@
         </tr>
       </tbody>
       </c:forEach>
+
     </table>
   </div>
 </div>

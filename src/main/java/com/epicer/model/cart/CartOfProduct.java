@@ -18,7 +18,7 @@ import com.epicer.model.product.Product;
 import com.epicer.model.users.User;
 
 @Entity
-@Table(name = "cart_product_details")
+@Table(name = "cartProductDetails")
 @Component
 public class CartOfProduct implements Serializable {
 

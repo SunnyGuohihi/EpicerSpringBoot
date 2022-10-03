@@ -46,7 +46,10 @@ public class RecipeService {
 	}
 	
 	public List<Recipe> queryByName(String name){
-		return recipeRepository.findByRecipeName(name);
+		System.out.println(name);
+		List<Recipe> queryByRecipeName = recipeRepository.queryByRecipeName(name);
+		System.out.println(queryByRecipeName.size());
+		return queryByRecipeName;
 	}
 	
 	public Recipe queryById(Integer id) {

@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,7 +48,7 @@ public class UserController {
 	@Autowired
 	private MailTemplateUtil mailtemplateutil;
 	
-	private static final String localpath = "D:\\Code\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
+	private static final String localpath = "C:\\Users\\User\\Desktop\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images";
 	
 	private Tools tools=new Tools();
 	
@@ -68,6 +70,25 @@ public class UserController {
 	
 	
 	
+	//視圖
+	@PostMapping(path="/forgetpassword")
+	public String forgetPassword() {
+		return "users/forgetPassword";
+	}
+	
+	//寄出認證信
+    @PostMapping(path="/vertifyemail")
+    @ResponseBody
+	public String vertifyEmail(@RequestBody User user,Model m) {
+    Message msga = login.checkAccount(user.getAccount());
+    if(msga.getCode()==1) {//帳號不存在、已遭停權
+    	m.addAttribute("msga",msga);
+    	return "users/forgetPassword";
+    }else {
+    	mailtemplateutil.sendMessageWithFreemarkerTemplate("localpath",user);
+    	return "users/forgetPassword";
+    }
+    }
 
 	
 	
@@ -189,7 +210,8 @@ public class UserController {
 			    m.addAttribute("show",show);
 			    m.addAttribute("account",msg);
 			    m.addAttribute("user",user);
-			    m.addAttribute("birth", tools.getStringDate(user.getBirth()));
+			    m.addAttribute("birth",tools.getStringDate(user.getBirth()));
+			    System.out.println(tools.getStringDate(user.getBirth()));
 			    System.out.println(user.getTownship()+1);
 				return "users/UserRegisterReset";
 			}
@@ -286,8 +308,10 @@ public String Login(@RequestParam("account") String account,@RequestParam String
 			m.addAttribute("sbirth",sbirth);
 			if(user.getStatus()==1) {
 				return "users/Userindex";
-			}else {
+			}else if(user.getStatus() ==0) {
 				return "users/AdminIndex";
+			}else {
+				return "users/index";
 			}
 		}
 	}

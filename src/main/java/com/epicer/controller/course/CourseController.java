@@ -55,7 +55,7 @@ public class CourseController {
 	
 	
 	///INSERT///
-	@PostMapping(path = "/beforeCourseInsert")
+	@GetMapping(path = "/beforeCourseInsert")	
 	public String beforeCourseInsert(Model m) {
 
 		Course course = new Course();

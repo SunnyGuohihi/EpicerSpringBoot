@@ -23,7 +23,7 @@ public class GetProductController {
 	
 	
 	
-	//進入商品頁網址: http://localhost:8081/productmenu
+	//進入商品頁網址: http://localhost:8091/productmenu
 //	@GetMapping("/productmenu")
 //	public String processProductMainAction() {
 //		System.out.println("gotomenu");
@@ -31,7 +31,7 @@ public class GetProductController {
 //	}
 	
 	//前端畫面查全部食材商品
-	//進入商品頁網址: http://localhost:8081/queryallproductmenu
+	//進入商品頁網址: http://localhost:8091/queryallproductmenu
 	@GetMapping(path = "/queryallproductmenu")
 	public String processActionProductQueryAll(Model m){
 		System.out.println("gotoqueryallmenu");

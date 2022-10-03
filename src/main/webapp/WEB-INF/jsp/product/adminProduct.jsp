@@ -127,6 +127,7 @@ display:inline-block;
 <!--           <input type="search" class="light-table-filter" data-table="table align-items-center mb-0" class="form-control" placeholder="請輸入關鍵字" type="text" > -->
 <!--           <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span> -->
 <!--         </div> -->
+
         <div class="col-md-12">
         <div class="form-group">
 					<div class="input-group input-group-alternative mb-0">
@@ -137,6 +138,7 @@ display:inline-block;
 					</div>
 				</div>
 	</div>
+
 	
 <!-- 	下拉式選單 -->
 <!-- 	<div class="dropdown"> -->

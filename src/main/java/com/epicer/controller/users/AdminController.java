@@ -37,7 +37,7 @@ public class AdminController {
 	@Autowired
 	private ManagementService management;
 	
-	private static final String localpath = "D:\\Code\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
+	private static final String localpath = "C:\\Users\\User\\Desktop\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
 
 	private Tools tools=new Tools();
 	

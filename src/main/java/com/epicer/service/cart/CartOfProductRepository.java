@@ -19,9 +19,9 @@ public interface CartOfProductRepository extends JpaRepository<CartOfProduct, In
 	// JPQL
 //	 public List<CartOfProduct> findByCartUserAndCartProduct(Integer cartUser, Integer cartProduct);
 
-	
+	//利用userId查出整個購物車
 	@Query(value ="select * from cart_product_details where userid=?1", nativeQuery = true)
-	public List<CartOfProduct> findByCartUser(Integer userid);
+	public List<CartOfProduct> findByCartUser(Integer userId);
 }
 
 

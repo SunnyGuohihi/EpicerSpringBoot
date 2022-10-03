@@ -72,7 +72,8 @@
 			
 			<!-- 購物車管理 -->
 			<li class="nav-item"><a class="nav-link "
-				href="./pages/billing.html">
+				href="http://localhost:8091/usercart.controller">
+
 					<div
 						class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 						<i class="ni ni-shop text-success text-sm opacity-10"></i>
@@ -80,8 +81,7 @@
 			</a></li>
 
 			<!-- 訂單管理 -->
-			<li class="nav-item"><a class="nav-link "
-				href="./pages/billing.html">
+			<li class="nav-item"><a class="nav-link " href="http://localhost:8091/userorder.controller">
 					<div
 						class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 						<i class="ni ni-cart text-success text-sm opacity-10"></i>

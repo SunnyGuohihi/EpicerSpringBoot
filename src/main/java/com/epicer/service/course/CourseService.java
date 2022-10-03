@@ -73,7 +73,7 @@ public class CourseService {
 	public String processImg(String courseName , MultipartFile photoData) throws IllegalStateException, IOException {
 		
 		String filename = courseName+System.currentTimeMillis()+".jpg";
-		String saveFileDir = "C:\\Action\\worksapce\\第二組Epicer\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images";
+		String saveFileDir = "C:\\Users\\User\\Desktop\\EpicerSpringBoot\\src\\main\\webapp\\WEB-INF\\resources\\images";
 		File saveFilePath = new File(saveFileDir,filename);
 		photoData.transferTo(saveFilePath);
 		return filename;

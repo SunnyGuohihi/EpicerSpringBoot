@@ -42,7 +42,7 @@ public class CartOfProductService {
 		return cartOfProductRep.findById(userId);
 	}
 	
-	//查詢ById test
+	//查詢ById test(語)
 	public List<CartOfProduct> findById2(Integer userId) {
 		return cartOfProductRep.findByCartUser(userId);
 	}
